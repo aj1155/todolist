@@ -22,7 +22,33 @@ public class TodoService {
         this.todoDao = todoDao;
     }
 
+    public Todo save(Todo todo){
+        Integer id = this.todoDao.insert(todo);
+        todo.setId(id);
+        return todo;
+    }
+
     public Collection<Todo> findAll() {
         return this.todoDao.selectAll();
     }
+
+    public Todo findById(Integer id) {
+        return this.todoDao.selectById(id);
+    }
+
+    public int getTodosCount() {
+        return this.todoDao.count();
+    }
+
+    public boolean update(Todo todo) {
+        int result = this.todoDao.update(todo);
+        return result == 1;
+    }
+
+    public boolean deleteById (Integer id) {
+        int result = this.todoDao.deleteById(id);
+        return result == 1;
+    }
+
+
 }
