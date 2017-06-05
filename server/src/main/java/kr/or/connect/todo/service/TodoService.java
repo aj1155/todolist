@@ -19,16 +19,17 @@ import java.util.stream.Collectors;
 public class TodoService {
 
     private final TodoDao todoDao;
-    private final Calendar calendar;
+    private Calendar calendar;
 
     @Autowired
     public TodoService(TodoDao todoDao) {
         this.todoDao = todoDao;
-        calendar = Calendar.getInstance();
     }
 
     public Todo save(Todo todo){
+        calendar = Calendar.getInstance();
         todo.setDate(calendar.getTime());
+        todo.setCompleted(0);
         Integer id = this.todoDao.insert(todo);
         todo.setId(id);
         return todo;
@@ -36,7 +37,7 @@ public class TodoService {
 
     public Collection<Todo> findAll() {
         List<Todo> todos = this.todoDao.selectAll();
-        return todos.stream().sorted((t1,t2) -> t1.getDate().compareTo(t2.getDate())).collect(Collectors.toList());
+        return todos.stream().sorted((t1,t2) -> t2.getDate().compareTo(t1.getDate())).collect(Collectors.toList());
     }
 
     public Todo findById(Integer id) {

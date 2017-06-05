@@ -4,6 +4,7 @@ function getTodoList(callback) {
             url: "/api/todos",
             contentType: "application/json; charset=UTF-8",
             success: function (data) {
+                console.log(data);
                 callback(data);
             },
         error: function (e) {
