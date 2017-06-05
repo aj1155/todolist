@@ -26,7 +26,7 @@ public class TodoService {
         this.todoDao = todoDao;
     }
 
-    public Todo save(Todo todo){
+    public Todo save(Todo todo) {
         calendar = Calendar.getInstance();
         todo.setDate(calendar.getTime());
         todo.setCompleted(0);
