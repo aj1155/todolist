@@ -2,6 +2,8 @@ package kr.or.connect.todo.api;
 
 import kr.or.connect.todo.domain.Todo;
 import kr.or.connect.todo.service.TodoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,8 @@ import java.util.Collection;
 public class TodoController {
 
     private final TodoService todoService;
+
+    private static Logger logger = LoggerFactory.getLogger(TodoController.class);
 
     @Autowired
     public TodoController(TodoService todoService) {
@@ -40,24 +44,28 @@ public class TodoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Todo> findOne(@PathVariable Integer id) {
+        logger.debug("id",id);
         Todo one = this.todoService.findById(id);
         return new ResponseEntity<Todo>(one,HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity update(@PathVariable Integer id,@RequestBody Todo todo) {
+        logger.debug("id",id);
         this.todoService.update(todo);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/complete/{id}")
     public ResponseEntity complete(@PathVariable Integer id) {
+        logger.debug("id",id);
         this.todoService.complete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable Integer id) {
+        logger.debug("id",id);
         this.todoService.deleteById(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

@@ -45,12 +45,13 @@ function renderFooter(list,type) {
     });
 
     var todoCount = '<span class="todo-count"><strong>' + notCompletedTodos.length + '</strong> item left</span>';
-    var filter = '<ul class="filters"><li><a ' + (type === "all" ? "class=selected" : "") + ' class="all" href="#/" >All</a></li><li><a class="active" href="#/active" ' + (type === "active" ? "class=selected" : "") + '>Active</a></li><li><a class="completed" href="#/completed" ' + (type === "completed" ? "class=selected" : "") + '>Completed</a></li></ul>';
+    var filter = '<ul class="filters"><li><a ' + (type === "all" ? "class=selected" : "") + ' filter="all" >All</a></li><li><a filter="active" ' + (type === "active" ? "class=selected" : "") + '>Active</a></li><li><a filter="completed" ' + (type === "completed" ? "class=selected" : "") + '>Completed</a></li></ul>';
+    console.log(filter);
     var complete = '<!-- This should be `0 items left` by default -->' + todoCount + '<!-- Remove this if you dont implement routing -->' + filter + '</ul> <!-- Hidden if no completed items are left ↓ --> <button class="clear-completed">Clear completed</button>';
 
     $('.footer').html(complete);
 
-    $('.all').click(function (event) {
+    $('[filter=all]').click(function (event) {
         event.preventDefault();
         getTodoList(function (list) {
             $('.todoapp').data('type','all');
@@ -58,7 +59,7 @@ function renderFooter(list,type) {
         });
     });
 
-    $('.active').click(function (event) {
+    $('[filter=active]').click(function (event) {
         event.preventDefault();
         getTodoList(function (list) {
             $('.todoapp').data('type','active');
@@ -66,7 +67,7 @@ function renderFooter(list,type) {
         });
     });
 
-    $('.completed').click(function (event) {
+    $('[filter=completed]').click(function (event) {
         event.preventDefault();
         getTodoList(function (list) {
             $('.todoapp').data('type','completed');

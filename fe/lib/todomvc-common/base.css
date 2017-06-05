@@ -139,3 +139,7 @@ hr {
 		left: 8px;
 	}
 }
+
+.filters li:hover {
+	cursor : pointer;
+}
