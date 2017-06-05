@@ -15,4 +15,8 @@ public class TodoSqls {
 					 +"completed = :completed,"
 					 +"date = :date\n"
 					 +"WHERE id = :id";
+	static final String COMPLETE =
+			"UPDATE todo SET\n"
+					+"completed = 1"
+					+"WHERE id = :id";
 }

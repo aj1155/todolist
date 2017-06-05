@@ -67,6 +67,18 @@ public class TodoServiceTest {
     }
 
     @Test
+    public void completeTest() {
+        boolean result = this.todoService.complete(1);
+        assertThat(result,is(true));
+    }
+
+    @Test
+    public void completeFailTest() {
+        boolean result = this.todoService.complete(0);
+        assertThat(result,is(false));
+    }
+
+    @Test
     public void deleteTest() {
         boolean result = this.todoService.deleteById(1);
         assertThat(result,is(true));

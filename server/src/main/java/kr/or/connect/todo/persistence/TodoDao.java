@@ -59,6 +59,11 @@ public class TodoDao {
 		return this.jdbc.update(TodoSqls.UPDATE,params);
 	}
 
+	public int complete(Integer id) {
+		Map<String, Object> params = Collections.singletonMap("id", id);
+		return this.jdbc.update(TodoSqls.COMPLETE,params);
+	}
+
 
 
 }

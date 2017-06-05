@@ -91,6 +91,16 @@ public class TodoControllerTest {
     }
 
     @Test
+    public void shouldComplete() throws Exception {
+
+        mvc.perform(
+                put("/api/todos/complete/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
     public void shouldDelete() throws Exception {
         mvc.perform(
                 delete("/api/todos/1")

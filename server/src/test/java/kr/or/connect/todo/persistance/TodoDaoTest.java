@@ -62,6 +62,12 @@ public class TodoDaoTest {
     }
 
     @Test
+    public void completeTest() {
+        int result = this.todoDao.complete(1);
+        assertThat(result,is(1));
+    }
+
+    @Test
     public void deleteByIdTest() {
         int result = this.todoDao.deleteById(143);
         assertThat(result,is(1));

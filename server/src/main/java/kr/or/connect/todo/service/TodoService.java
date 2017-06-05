@@ -53,6 +53,11 @@ public class TodoService {
         return result == 1;
     }
 
+    public boolean complete(Integer id) {
+        int result = this.todoDao.complete(id);
+        return result == 1;
+    }
+
     public boolean deleteById (Integer id) {
         int result = this.todoDao.deleteById(id);
         return result == 1;

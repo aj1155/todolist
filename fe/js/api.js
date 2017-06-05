@@ -33,3 +33,17 @@ function create(todo,callback) {
         });
     }
 }
+
+function complete(id,callback) {
+    $.ajax({
+        type: "PUT",
+        url : "/api/todos/" + id,
+        contentType: "application/json; charset=UTF-8",
+        success: function (data) {
+            callback();
+        },
+        error: function (error) {
+            alert(error.responseText);
+        }
+    });
+}

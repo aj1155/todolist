@@ -50,6 +50,12 @@ public class TodoController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    @PutMapping("/complete/{id}")
+    public ResponseEntity complete(@PathVariable Integer id) {
+        this.todoService.complete(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable Integer id) {
         this.todoService.deleteById(id);
